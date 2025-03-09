@@ -1,87 +1,69 @@
 import * as React from 'react';
-import  {View,StyleSheet,Image,Text,TouchableOpacity,TextInput,FlatList} from 'react-native';
-import { useNavigation , useRoute} from '@react-navigation/native';
+import  {View,StyleSheet,Image,Text,TouchableOpacity,TextInput} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {PRIMARYCOLOR,PRIMARYBORDERADIUS} from '../Constants.js';
 import { Ionicons } from '@expo/vector-icons';
 import {CustomCard} from './CustomCard';
 import bus from '../assets/images/bus.png';
 import mrt from '../assets/images/mrt.jpg';
 import {FromTo} from './FromTo';
-export const ScheduleScreen = () => {
+import SvgQRCode from 'react-native-qrcode-svg';
 
-  const nav = useNavigation();
-  const route = useRoute();
-  const params = route.params;
-  const DATA = [
-    {
-      id: 1,
-      departuretime: "10:00",
-      arrivaltime:"10:30",
-      name:"Lorem MRT Station",
-      price:"5.0",
-      onPressHandler:()=>{
-        nav.navigate("payment",{price:"5.0"});
-      }
-    },
-    {
-      id: 2,
-      departuretime: "10:00",
-      arrivaltime:"10:30",
-      name:"Dolor MRT Station",
-      price:"5.0",
-      onPressHandler:()=>{
-        nav.navigate("payment",{price:"5.0"});
-      }
-    }
-  ];
-  const scheduleItem = ({item}) => {
-    return (<View style={{marginBottom:10,borderBottomWidth:2,marginHorizontal:5,borderBottomStartRadius:30,borderBottomEndRadius:10,borderBottomColor:"#EBE7E6"}}>
-              <View style={{flexDirection:"row",marginHorizontal:26,marginBottom:10,justifyContent:"space-between"}}>
-                <View style={{flexDirection:"row"}}>
-                  <Ionicons name="timer-outline" size={15} color="#000"  />
-                  <Text style={{fontSize:15,fontWeight:"bold",marginHorizontal:10}}>{item.departuretime}</Text>
-                  <Ionicons name="swap-horizontal-outline" size={15} color="#000"  />
-                  <Text style={{fontSize:15,fontWeight:"bold",marginHorizontal:10}}>{item.arrivaltime}</Text>
-                </View>
-                <View>
-                  <Text style={{fontWeight:"bold",marginRight:16}}>$ {item.price}</Text>
-                </View>
-              </View>
-              <View style={{flexDirection:"row",marginHorizontal:26,marginBottom:15,justifyContent:"space-between"}}>
-                <View style={{flexDirection:"row"}}>
-                  <Ionicons name="location-outline" size={15} color="#000"  />
-                  <Text style={{fontSize:15,fontWeight:"bold",marginHorizontal:10}}>{item.name}</Text>
-                </View>
-                <View>
-                  <TouchableOpacity onPress={item.onPressHandler} style={{backgroundColor:params.backgroundColor,paddingHorizontal:8,borderRadius:5}}>
-                  <Text style={{color:"#fff",fontWeight:"bold"}}>Select</Text>
-                  </TouchableOpacity>
-                </View>
-              </View> 
-           </View>
-           );
-  };
+export const PaymentScreen = () => {
+  
   return (
-          <View style={[styles.container,{backgroundColor:params.backgroundColor}]}>
-              <View style={[styles.topview,{backgroundColor:params.backgroundColor,marginBottom:20}]}>
-                 <Text style={{position:"absolute",top:5,textAlign:"center",fontSize:30,color:"#fff",fontWeight:"bold"}}>{params.title}</Text>
-                  <Image
-                      source={params.imagesrc}>
-                  </Image>
+          <View style={styles.container}>
+              <View style={styles.topview}>
+                  <Text style={{position:"absolute",top:5,textAlign:"center",fontSize:30,color:"#fff",fontWeight:"bold"}}>Ticket</Text>
               </View>
               <View style={styles.bottomview}>
-              <CustomCard elevated={true} style={{backgroundColor:"#fff",marginHorizontal:24,marginTop:30,padding:10,borderRadius:10,flexDirection:"row",justifyContent:"space-between"}}>
-                <FromTo backgroundColor={params.backgroundColor} />
+              <CustomCard elevated={true} style={{backgroundColor:"#fff",marginHorizontal:24,marginTop:-180,padding:30,borderRadius:10}}>
+                  <FromTo />
+                  <View style={{flexDirection:"row",marginTop:10}}>
+                    <View>
+                      <View style={{flexDirection:"row",marginTop:15,alignItems:"center"}}>
+                        <Ionicons name="timer-outline" size={15} color="#000"  />
+                        <Text style={{marginLeft:10,fontWeight:"bold"}}>10:00</Text>
+                        <Ionicons style={{opacity:0.2,marginLeft:10}} name="train" size={15} color="#000"  />
+                        <Text style={{marginLeft:5,fontWeight:"bold"}}>10:30</Text>
+                      </View>
+                      <View style={{flexDirection:"row",marginTop:15}}>
+                        <Ionicons name="location-outline" size={15} color="#000"  />
+                        <Text style={{marginLeft:10,fontWeight:"bold"}}>Chennai Central</Text>
+                      </View>
+                      <View style={{flexDirection:"row",marginTop:15}}>
+                        <Ionicons name="timer-outline" size={15} color="#000"  />
+                        <Text style={{marginLeft:10,fontWeight:"bold"}}>₹15</Text>
+                      </View>
+                    </View>
+                    <View style={{ width:50,height:50,marginLeft:10,marginTop:10}}>
+                    <SvgQRCode value="http://example.com" />
+                    </View>
+                  </View>
                 </CustomCard>
-                <Text style={{marginHorizontal:26,marginVertical:20,fontWeight:"bold",fontSize:20}}>Choose Schedule</Text>
+                <Text style={{marginHorizontal:26,marginVertical:16,fontWeight:"bold",fontSize:20}}>Payment</Text>
+                <Text style={{marginHorizontal:26,fontWeight:"bold",fontSize:15,marginVertical:10}}>Amount</Text>
+                <TextInput value="₹15.00" style={{backgroundColor:"#EBE7E6",padding:8,marginHorizontal:23,marginVertical:5,borderRadius:8,fontWeight:"bold"}}/>
                 <View>
-                    <FlatList
-                    data={DATA}
-                    renderItem={scheduleItem}
-                    keyExtractor={(item) => item.id}
-                  />
                 </View>
+                <View>
+                  <View style={{flexDirection:"row", marginTop:20,paddingBottom:10,borderBottomWidth:2,justifyContent:"space-between",alignItems:"center",marginHorizontal:23,borderBottomColor:"#EBE7E6"}}>
+                    <TouchableOpacity style={{width:125,backgroundColor:"#6BC5E8",borderRadius:8}}>
+                      <Text style={{color:"#fff",paddingVertical:10,fontWeight:"bold",textAlign:"center"}}>Credit Card</Text>
+                    </TouchableOpacity>
+                    <Text style={{fontWeight:"bold"}}>Balance : ₹84</Text>
+                  </View>
+                  <View style={{flexDirection:"row", justifyContent:"space-between",alignItems:"center",marginHorizontal:26}}>
+                    <TouchableOpacity style={{width:125,marginTop:10, backgroundColor:"#EBE7E6",borderRadius:8}}>
+                      <Text style={{paddingVertical:10,fontWeight:"bold",textAlign:"center"}}>E-wallet</Text>
+                    </TouchableOpacity>
+                    <Text style={{fontWeight:"bold"}}>Balance : ₹84</Text>
+                  </View>
                 </View>
+                <TouchableOpacity style={{padding:7,margin:26,borderRadius:12,backgroundColor:PRIMARYCOLOR}}>
+                  <Text style={{fontSize:25,textAlign:"center",fontWeight:"bold",color:"#fff"}}>Buy Ticket</Text>
+                </TouchableOpacity>
+              </View>
           </View>);
 }
 
@@ -94,11 +76,35 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     alignItems:"center"
   },
+  welcomemessage:{
+    color:"#fff",
+    fontSize:35,
+    fontWeight:"bold"
+  },
+  searchbar:{
+    flexDirection:"row",
+    backgroundColor:"#fff",
+    alignItems:"center",
+    width:"100%",
+    height:40,
+    borderRadius:10,
+    marginBottom:65
+  },
+  circle:{
+    borderRadius:25,
+    height:50,
+    width:50,
+    backgroundColor:"#fff"
+  },
+  welcomecontainer:{
+    flexDirection:"row",
+    justifyContent:"space-between",
+    alignItems:"center"
+  },
   bottomview:{
     flex:2,
     backgroundColor:"#fff",
     borderTopLeftRadius:50,
-    marginTop:20,
     borderTopRightRadius:50,
   },
   container: {
