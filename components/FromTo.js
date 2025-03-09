@@ -9,7 +9,7 @@ export const FromTo = (props) =>{
             <Ionicons name="location-sharp" size={26} color={props.backgroundColor}  />
             <View style={{marginLeft:20}}>
               <Text style={{opacity:0.6,fontSize:15}}>From</Text>
-              <Text style={{fontWeight:"bold",fontSize:15,marginTop:10}}>Lorem MRT Station</Text>
+              <Text style={{fontWeight:"bold",fontSize:15,marginTop:10}}>Chennai Central</Text>
             </View>
       </View>
       <View style={{position:"absolute",left:12,height:28,borderWidth:1,top:42,width:0,borderColor:"#EBE7E6"}}>
@@ -18,7 +18,7 @@ export const FromTo = (props) =>{
             <Ionicons name="location-sharp" size={26} color="#5C7A82"  />
             <View style={{marginLeft:20}}>
               <Text style={{opacity:0.6,fontSize:15,marginTop:10}}>To</Text>
-              <Text style={{fontWeight:"bold",fontSize:15,marginTop:10}}>Lorem MRT Station</Text>
+              <Text style={{fontWeight:"bold",fontSize:15,marginTop:10}}>Thousands Lights</Text>
             </View>
       </View>
     </View>
