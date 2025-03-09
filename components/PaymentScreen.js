@@ -29,11 +29,11 @@ export const PaymentScreen = () => {
                       </View>
                       <View style={{flexDirection:"row",marginTop:15}}>
                         <Ionicons name="location-outline" size={15} color="#000"  />
-                        <Text style={{marginLeft:10,fontWeight:"bold"}}>Lorem MRT Station</Text>
+                        <Text style={{marginLeft:10,fontWeight:"bold"}}>Chennai Central</Text>
                       </View>
                       <View style={{flexDirection:"row",marginTop:15}}>
                         <Ionicons name="timer-outline" size={15} color="#000"  />
-                        <Text style={{marginLeft:10,fontWeight:"bold"}}>$ 5.0</Text>
+                        <Text style={{marginLeft:10,fontWeight:"bold"}}>₹15</Text>
                       </View>
                     </View>
                     <View style={{ width:50,height:50,marginLeft:10,marginTop:10}}>
@@ -42,8 +42,8 @@ export const PaymentScreen = () => {
                   </View>
                 </CustomCard>
                 <Text style={{marginHorizontal:26,marginVertical:16,fontWeight:"bold",fontSize:20}}>Payment</Text>
-                <Text style={{marginHorizontal:26,fontWeight:"bold",fontSize:15,marginVertical:10}}>Enter Amount</Text>
-                <TextInput value="$     5.0" style={{backgroundColor:"#EBE7E6",padding:8,marginHorizontal:23,marginVertical:5,borderRadius:8,fontWeight:"bold"}}/>
+                <Text style={{marginHorizontal:26,fontWeight:"bold",fontSize:15,marginVertical:10}}>Amount</Text>
+                <TextInput value="₹15.00" style={{backgroundColor:"#EBE7E6",padding:8,marginHorizontal:23,marginVertical:5,borderRadius:8,fontWeight:"bold"}}/>
                 <View>
                 </View>
                 <View>
@@ -51,13 +51,13 @@ export const PaymentScreen = () => {
                     <TouchableOpacity style={{width:125,backgroundColor:"#6BC5E8",borderRadius:8}}>
                       <Text style={{color:"#fff",paddingVertical:10,fontWeight:"bold",textAlign:"center"}}>Credit Card</Text>
                     </TouchableOpacity>
-                    <Text style={{fontWeight:"bold"}}>Balance : $84</Text>
+                    <Text style={{fontWeight:"bold"}}>Balance : ₹84</Text>
                   </View>
                   <View style={{flexDirection:"row", justifyContent:"space-between",alignItems:"center",marginHorizontal:26}}>
                     <TouchableOpacity style={{width:125,marginTop:10, backgroundColor:"#EBE7E6",borderRadius:8}}>
                       <Text style={{paddingVertical:10,fontWeight:"bold",textAlign:"center"}}>E-wallet</Text>
                     </TouchableOpacity>
-                    <Text style={{fontWeight:"bold"}}>Balance : $84</Text>
+                    <Text style={{fontWeight:"bold"}}>Balance : ₹84</Text>
                   </View>
                 </View>
                 <TouchableOpacity style={{padding:7,margin:26,borderRadius:12,backgroundColor:PRIMARYCOLOR}}>
