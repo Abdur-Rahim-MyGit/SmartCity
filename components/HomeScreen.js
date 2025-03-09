@@ -1,3 +1,4 @@
+//new fn
 import * as React from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity, TextInput, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -6,6 +7,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { CustomCard } from './CustomCard';
 import bus from '../assets/images/bus.png';
 import mrt from '../assets/images/mrt.jpg';
+import MapView, { Marker } from 'react-native-maps';
+
 
 export const HomeScreen = () => {
   const nav = useNavigation();
@@ -27,7 +30,16 @@ export const HomeScreen = () => {
       onPressHandler: () => {
         nav.navigate("schedule", { title: "MRT", imagesrc: mrt, backgroundColor: "#3A9EC2" });
       }
-    }
+    },
+    // {
+    //   id: 3,
+    //   name: "Local Train",
+    //   backgroundColor: "#3A9EC2",
+    //   imagesrc: mrt,
+    //   onPressHandler: () => {
+    //     nav.navigate("schedule", { title: "MRT", imagesrc: mrt, backgroundColor: "#3A9EC2" });
+    //   }
+    // }
   ];
   const transportItem = ({ item }) => {
     return (
@@ -63,20 +75,31 @@ export const HomeScreen = () => {
         </View>
       </View>
       <View style={styles.bottomview}>
-        <CustomCard elevated={true} style={{ backgroundColor: "#fff", marginHorizontal: 24, marginTop: -40, padding: 30, borderRadius: 10, flexDirection: "row", justifyContent: "space-between" }}>
-          <View style={{ alignItems: "center" }}>
-            <Text style={{ fontWeight: "bold", marginBottom: 10 }}>Balance</Text>
-            <Text style={{ fontWeight: "bold", fontSize: 18 }}>₹180</Text>
-          </View>
-          <View style={{ alignItems: "center" }}>
-            <Text style={{ fontWeight: "bold", marginBottom: 10 }}>Rewards</Text>
-            <Text style={{ fontWeight: "bold", fontSize: 18 }}>₹43</Text>
-          </View>
-          <View style={{ alignItems: "center" }}>
-            <Text style={{ fontWeight: "bold", marginBottom: 10 }}>Total Trips</Text>
-            <Text style={{ fontWeight: "bold", fontSize: 18 }}>129</Text>
-          </View>
-        </CustomCard>
+      <CustomCard elevated={true} style={{ backgroundColor: "#fff", marginHorizontal: 24, marginTop: -40, padding: 10, borderRadius: 10, flexDirection: "row", justifyContent: "space-between" }}>
+  <MapView
+    style={{ width: "100%", height: 65, borderRadius: 20 }}
+    initialRegion={{
+      latitude: 13.0827, // Chennai Latitude
+      longitude: 80.2707, // Chennai Longitude
+      latitudeDelta: 0.05,
+      longitudeDelta: 0.05,
+    }}
+  >
+    <Marker coordinate={{ latitude: 20.5937, longitude: 78.9629  }} title="You are here" />
+  </MapView>
+    {/* <View style={{alignItems:"center"}}>
+                    <Text style={{fontWeight:"bold", marginBottom:10}}>Balance</Text>
+                    <Text style={{fontWeight:"bold",fontSize:18}}> ₹ 180</Text>
+                  </View>
+                  <View style={{alignItems:"center"}}>
+                    <Text style={{fontWeight:"bold", marginBottom:10}}>Rewards</Text>
+                    <Text style={{fontWeight:"bold",fontSize:18}}>₹ 58</Text>
+                  </View>
+                  <View style={{alignItems:"center"}}>
+                    <Text style={{fontWeight:"bold", marginBottom:10}}>Total Trips</Text>
+                    <Text style={{fontWeight:"bold",fontSize:18}}>19</Text>
+                  </View> */}
+</CustomCard>
         <Text style={{ marginHorizontal: 26, marginVertical: 20, fontWeight: "bold", fontSize: 20 }}>Choose your Transport</Text>
         <View>
           <FlatList
@@ -91,7 +114,9 @@ export const HomeScreen = () => {
             <TouchableOpacity onPress={() => nav.navigate("payment")}>
               <Ionicons name="person" size={25} color="#BDBEC1" />
             </TouchableOpacity>
-            {/* <Ionicons name="location-sharp" size={25} color="#BDBEC1" /> */}
+            <TouchableOpacity onPress={() => nav.navigate("navigation")}>
+              <Ionicons name="location-sharp" size={25} color="#BDBEC1" />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -117,7 +142,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     width: "100%",
-    height: 40,
+    height: 45,
     borderRadius: 10,
     marginBottom: 65
   },
