@@ -67,11 +67,11 @@ export const HomeScreen = () => {
                 <CustomCard elevated={true} style={{ backgroundColor: "#fff", marginHorizontal: 24, marginTop: -40, padding: 30, borderRadius: 10, flexDirection: "row", justifyContent: "space-between" }}>
                     <View style={{ alignItems: "center" }}>
                         <Text style={{ fontWeight: "bold", marginBottom: 10 }}>Balance</Text>
-                        <Text style={{ fontWeight: "bold", fontSize: 18 }}>$ 18</Text>
+                        <Text style={{ fontWeight: "bold", fontSize: 18 }}>₹ 18</Text>
                     </View>
                     <View style={{ alignItems: "center" }}>
                         <Text style={{ fontWeight: "bold", marginBottom: 10 }}>Rewards</Text>
-                        <Text style={{ fontWeight: "bold", fontSize: 18 }}>$ 10.25</Text>
+                        <Text style={{ fontWeight: "bold", fontSize: 18 }}>₹ 10.25</Text>
                     </View>
                     <View style={{ alignItems: "center" }}>
                         <Text style={{ fontWeight: "bold", marginBottom: 10 }}>Total Trips</Text>
